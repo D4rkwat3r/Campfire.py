@@ -19,7 +19,7 @@ from .model import ChatMessage
 class Client:
     def __init__(self, api: CampfireAPI = CampfireSocketAPI(), firebase_proxy: Optional[str] = None):
         super().__init__()
-        self._api = api
+        self.api = api
         self._firebase_client = FirebaseClient(firebase_proxy)
 
     async def get_translate_map(self, force_language: int = None) -> TranslateMap:
