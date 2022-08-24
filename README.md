@@ -10,7 +10,6 @@ async def main():
   client = campfire.Client()
   await client.login("your email", "your password")
 
-
 if __name__ == "__main__":
   get_event_loop().run_until_complete(main())
 ```
@@ -23,7 +22,6 @@ from asyncio import get_event_loop
 async def main():
   client = campfire.Client()
   await client.login_by_token("access token")
-
 
 if __name__ == "__main__":
   get_event_loop().run_until_complete(main())
@@ -49,7 +47,6 @@ async def main():
   await client.set_account_settings(hello_is_showed=True, hello_short_is_showed=True)
   # Now you can log in to this account through the app using email and password
 
-
 if __name__ == "__main__":
   get_event_loop().run_until_complete(main())
 ```
@@ -71,12 +68,10 @@ async def polling(client: Client):
       last_msg = message["unitId"]
       print("Reply sent!")
 
-
 async def main():
   client = campfire.Client()
   await client.login("email", "password")
   await polling(client)
-  
 
 if __name__ == "__main__":
   get_event_loop().run_until_complete(main())
@@ -101,7 +96,6 @@ async def main():
   # Or
   response = await request.send(client.api)
   # Now you can read response like a regular dict
-
 
 if __name__ == "__main__":
   get_event_loop().run_until_complete(main())
