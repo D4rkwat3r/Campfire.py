@@ -39,7 +39,7 @@ async def main():
   # Now you can log in to this account through the app using email and password
 ```
 
-## Echo bot for public chats (Due to the fact that the application uses FCM to receive messages, event-based handlers are not supported)
+## Echo bot for public chats (due to the fact that the application uses FCM to receive messages, event-based handlers are not supported)
 
 ```python3
 async def polling(client: Client):
