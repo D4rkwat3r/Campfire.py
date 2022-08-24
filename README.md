@@ -4,24 +4,35 @@ Unofficial Campfire API on Python
 ## Login by email
 ```python3
 import campfire
+from asyncio import get_event_loop
 
 async def main():
   client = campfire.Client()
   await client.login("your email", "your password")
+
+
+if __name__ == "__main__":
+  get_event_loop().run_until_complete(main())
 ```
 
 ## Login by Firebase access token
 ```python3
 import campfire
+from asyncio import get_event_loop
 
 async def main():
   client = campfire.Client()
   await client.login_by_token("access token")
+
+
+if __name__ == "__main__":
+  get_event_loop().run_until_complete(main())
 ```
 
 ## Create new account
 ```python3
 import campfire
+from asyncio import get_event_loop
 
 async def main():
   client = campfire.Client()
@@ -37,12 +48,18 @@ async def main():
   await client.set_sex(campfire.SexType.MALE)
   await client.set_account_settings(hello_is_showed=True, hello_short_is_showed=True)
   # Now you can log in to this account through the app using email and password
+
+
+if __name__ == "__main__":
+  get_event_loop().run_until_complete(main())
 ```
 
 ## Echo bot for public chats (due to the fact that the application uses FCM to receive messages, event-based handlers are not supported)
 
 ```python3
 import campfire
+from asyncio import get_event_loop
+
 async def polling(client: Client):
   msgs = await client.get_chat_messages("fandom id", "chat id", 1) # 1 - type of the chat
   last_msg = msgs[len(msgs) - 1].id
@@ -54,15 +71,22 @@ async def polling(client: Client):
       last_msg = message["unitId"]
       print("Reply sent!")
 
+
 async def main():
   client = campfire.Client()
   await client.login("email", "password")
   await polling(client)
+  
+
+if __name__ == "__main__":
+  get_event_loop().run_until_complete(main())
 ```
 
 ## Send custom request
 ```python3
 import campfire
+from asyncio import get_event_loop
+
 async def main():
   client = campfire.Client()
   request = campfire.APIRequest(name="RYourRequestName")
@@ -76,5 +100,9 @@ async def main():
   response = await request(client.api)
   # Or
   response = await request.send(client.api)
-  # Now you read response like a regular dict
+  # Now you can read response like a regular dict
+
+
+if __name__ == "__main__":
+  get_event_loop().run_until_complete(main())
 ```
