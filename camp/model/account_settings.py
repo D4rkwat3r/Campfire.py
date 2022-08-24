@@ -1,0 +1,92 @@
+from dataclasses import dataclass
+from dataclasses import field
+from dataclasses_json import dataclass_json
+from dataclasses_json import LetterCase
+from .bookmarks_folder import BookmarksFolder
+
+
+@dataclass_json(letter_case=LetterCase.CAMEL)
+@dataclass
+class AccountSettings:
+    feed_categories: list[str] = field(default_factory=list)
+    notifications_filter_other: bool = True
+    notifications_other: bool = True
+    notifications_filter_follows: bool = True
+    profile_filter_chat_messages: bool = False
+    profile_filter_posts: bool = True
+    notifications_important: bool = True
+    notifications_p_m: bool = True
+    story_quest_index: int = 0
+    app_language: str = ""
+    notifications_comments: bool = True
+    viewed_chats: list[int] = field(default_factory=list)
+    feed_order_v2: list[int] = field(default_factory=list)
+    notifications_filter_karma: bool = True
+    salient_time: int = 0
+    notifications_filter_answers: bool = True
+    fast_publication_fandom_name: str = "Anything"
+    long_plus_fandom_language_id: int = 0
+    fullscreen: bool = False
+    fandom_filter_administrations: bool = True
+    notifications_salient_on_time_enabled: bool = False
+    fandom_filter_moderations_posts: bool = True
+    is_profile_list_style: bool = False
+    notifications_filter_comments: bool = True
+    notifications_comments_answers: bool = True
+    story_quest_progress: int = 0
+    notifications_salient_on_time_end_m: int = 0
+    notifications_salient_on_time_start_h: int = 23
+    voice_messages_auto_lock: bool = False
+    fandom_nsfw: list[int] = field(default_factory=list)
+    bookmarks_folders: list[BookmarksFolder] = field(default_factory=list)
+    fandom_filter_moderations_blocks: bool = True
+    notifications_filter_follows_publications: bool = True
+    allow_adding_to_conferences: bool = True
+    long_plus_fandom_id: int = 1626
+    notifications_karma: bool = True
+    notifications_achievements: bool = True
+    is_stub: bool = False
+    admin_reports_languages: list[int] = field(default_factory=list)
+    notifications_filter_important: bool = True
+    feed_important: bool = False
+    hello_short_is_showed: bool = False
+    style_chat_corned: int = 8
+    notifications_chat_messages: bool = True
+    fast_publication_fandom_id: int = 1627
+    watch_post: bool = False
+    user_activities_allowed_all: bool = True
+    style_corned: int = 10
+    style_square: bool = True
+    notifications_salient_on_time_end_h: int = 8
+    fandom_filter_moderations: bool = True
+    voice_messages_ignore: bool = False
+    fast_publication_fandom_language_id: int = 0
+    notifications_chat_answers: bool = True
+    notifications_filter_achievements: bool = True
+    feed_languages: list[int] = field(default_factory=list)
+    rules_is_showed: bool = False
+    fandom_filter_only_important: bool = False
+    profile_filter_stickers: bool = True
+    fandom_background: bool = True
+    notifications: bool = True
+    profile_filter_events: bool = True
+    notifications_salient_all: bool = False
+    user_activities_allowed_followed_users: bool = True
+    user_activities_allowed_followed_fandoms: bool = True
+    theme: int = 0
+    long_plus_fandom_name: str = "Anything"
+    interface_type: int = 0
+    notifications_follows_posts: bool = True
+    anon_rates: bool = False
+    notifications_follows: bool = True
+    hello_is_showed: bool = False
+    user_activities_auto_subscribe: bool = True
+    auto_read_notifications: bool = True
+    notifications_salient_on_time_start_m: int = 0
+    profile_filter_moderations: bool = True
+    voice_messages_auto_send: bool = False
+    lvl_dialog_lvl: int = 1
+    style_new_year_avatars: bool = True
+    style_new_year_profile_animation = True
+    style_new_year_snow = int = 100
+    profile_filter_comments: bool = True
