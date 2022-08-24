@@ -25,7 +25,7 @@ class Client:
     async def get_translate_map(self, force_language: int = None) -> TranslateMap:
         request = APIRequest(name=APIRequest.TRANSLATE_GET_MAP)
         if force_language is not None: request.language_id(force_language)
-        return TranslateMap.from_dict(await request(self._api))
+        return TranslateMap.from_dict(await request(self.api))
 
     async def create_account(self, email: str, password: str) -> FirebaseAccountInfo:
         response = await self._firebase_client.signup_new_user(
@@ -56,7 +56,7 @@ class Client:
             .email2_token(token) \
             .field("translateMapHashEng",translate_eng.translate_map_hash) \
             .field("translateMapHash", translate.translate_map_hash)
-        return await request(self._api)
+        return await request(self.api)
 
     async def login(self, email: str, password: str) -> AccountFullInfo:
         token = (await self._firebase_client.get_token_info(
@@ -69,7 +69,7 @@ class Client:
 
     async def change_name(self, name: str) -> None:
         request = APIRequest(name=APIRequest.ACCOUNTS_CHANGE_NAME).field("name", name)
-        await request(self._api)
+        await request(self.api)
 
     async def send_message(
             self,
@@ -87,7 +87,7 @@ class Client:
             .field("text", text) \
             .field("quoteMessageId", quote_message_id) \
             .field("stickerId", sticker_id)
-        return await request(self._api)
+        return await request(self.api)
 
     async def get_chat_messages(self,
                                 target_id: int,
@@ -103,7 +103,7 @@ class Client:
             .field("messageId", message_id)
         return [
             ChatMessage.from_dict(message)
-            for message in (await request(self._api))["units"]
+            for message in (await request(self.api))["units"]
         ]
 
     async def get_chat_message(self, target_id: int, sub_id: int, chat_type: int, message_id: int) -> ChatMessage:
@@ -111,15 +111,15 @@ class Client:
         request = APIRequest(name=APIRequest.CHAT_MESSAGE_GET) \
             .field("tag", tag.to_dict()) \
             .field("messageId", message_id)
-        return ChatMessage.from_dict(await request(self._api))
+        return ChatMessage.from_dict(await request(self.api))
 
     async def set_sex(self, sex: int) -> None:
-        return await APIRequest(name=APIRequest.ACCOUNTS_SET_SEX).field("sex", sex)(self._api)
+        return await APIRequest(name=APIRequest.ACCOUNTS_SET_SEX).field("sex", sex)(self.api)
 
     async def set_account_settings(self, **kwargs) -> None:
         await APIRequest(name=APIRequest.ACCOUNTS_SET_SETTINGS) \
-            .field("settings", AccountSettings(**kwargs).to_dict())(self._api)
+            .field("settings", AccountSettings(**kwargs).to_dict())(self.api)
 
     async def get_account_info(self) -> AccountInfo:
         request = APIRequest(name=APIRequest.ACCOUNTS_GET_INFO)
-        return AccountInfo.from_dict(await request(self._api))
+        return AccountInfo.from_dict(await request(self.api))
