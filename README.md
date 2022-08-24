@@ -42,6 +42,7 @@ async def main():
 ## Echo bot for public chats (due to the fact that the application uses FCM to receive messages, event-based handlers are not supported)
 
 ```python3
+import campfire
 async def polling(client: Client):
   msgs = await client.get_chat_messages("fandom id", "chat id", 1) # 1 - type of the chat
   last_msg = msgs[len(msgs) - 1].id
@@ -55,5 +56,25 @@ async def polling(client: Client):
 
 async def main():
   client = campfire.Client()
+  await client.login("email", "password")
   await polling(client)
+```
+
+## Send custom request
+```python3
+import campfire
+async def main():
+  client = campfire.Client()
+  request = campfire.APIRequest(name="RYourRequestName")
+  # Add custom field (optional)
+  request.field("fieldKey", "fieldValue")
+  # Or
+  request.fieldKey("fieldValue")
+  # Change language (if not called, English is used)
+  request.language(campfire.LanguageID.RUSSIAN)
+  # Get JSON response (can also accept a custom implementation of CampfireAPI)
+  response = await request(client.api)
+  # Or
+  response = await request.send(client.api)
+  # Now you read response like a regular dict
 ```
