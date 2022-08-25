@@ -61,10 +61,10 @@ async def polling(client: Client):
   msgs = await client.get_chat_messages("fandom id", "chat id", 1) # 1 - type of the chat
   last_msg = msgs[len(msgs) - 1].id
   while True:
-      msgs = await client.get_chat_messages(, 2, 1)
+      msgs = await client.get_chat_messages("fandom id", "chat id", 1)
       if msgs[len(msgs) - 1].id == last_msg: continue
       print("Message received")
-      message = await client.send_message(10, 2, 1, f"Message text is \"{msgs[len(msgs) - 1].body.text}\"")
+      message = await client.send_message("fandom id", "chat id", 1, f"Message text is \"{msgs[len(msgs) - 1].body.text}\"")
       last_msg = message["unitId"]
       print("Reply sent!")
 
